@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.awesomelemon</groupId>
+    <artifactId>api-extraction-java</artifactId>
+    <version>1.0</version>
+    <dependencies>
+        <dependency>
+            <groupId>com.github.javaparser</groupId>
+            <artifactId>javaparser-core</artifactId>
+            <version>3.6.0</version>
+            <!--<systemPath>${project.basedir}/../javaparser/javaparser-core/target/javaparser-core-3.5.17-SNAPSHOT-sources.jar</systemPath>-->
+            <!--<systemPath>${project.basedir}/javaparser-core-3.5.17-SNAPSHOT-sources.jar</systemPath>-->
+        </dependency>
+        <dependency>
+            <groupId>com.github.javaparser</groupId>
+            <artifactId>javaparser-symbol-solver-core</artifactId>
+            <version>3.6.0</version>
+            <!---->
+        </dependency>
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.7.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.github.arunsoman.ipc/mapped-bus-ipc -->
+        <dependency>
+            <groupId>com.github.arunsoman.ipc</groupId>
+            <artifactId>mapped-bus-ipc</artifactId>
+            <version>0.0.5</version>
+        </dependency>
+
+    </dependencies>
+
+    <properties>
+        <maven.compiler.source>1.9</maven.compiler.source>
+        <maven.compiler.target>1.9</maven.compiler.target>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <configuration>
+                    <mainClass>com.github.awesomelemon.Main</mainClass>
+                    <arguments>
+                        <argument>argument1</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-install-plugin</artifactId>-->
+                <!--<version>2.5.2</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>install-external1</id>-->
+                        <!--<phase>clean</phase>-->
+                        <!--<configuration>-->
+                            <!--<file>/home/jet/IdeaProjects/javaparser/javaparser-core/target/javaparser-core-3.5.17-SNAPSHOT.jar</file>-->
+                            <!--<repositoryLayout>default</repositoryLayout>-->
+                            <!--<groupId>com.github.javaparser</groupId>-->
+                            <!--<artifactId>javaparser-core</artifactId>-->
+                            <!--<version>3.5.17</version>-->
+                            <!--<packaging>jar</packaging>-->
+                            <!--<generatePom>true</generatePom>-->
+                        <!--</configuration>-->
+                        <!--<goals>-->
+                            <!--<goal>install-file</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                    <!--<execution>-->
+                        <!--<id>install-external2</id>-->
+                        <!--<phase>clean</phase>-->
+                        <!--<configuration>-->
+                            <!--<file>${project.basedir}/../javaparser/javaparser-symbol-solver-core/target/javaparser-symbol-solver-core-3.5.17-SNAPSHOT-sources.jar</file>-->
+                            <!--<repositoryLayout>default</repositoryLayout>-->
+                            <!--<groupId>com.github.javaparser</groupId>-->
+                            <!--<artifactId>java-symbol-solver-core</artifactId>-->
+                            <!--<version>3.5.17</version>-->
+                            <!--<packaging>jar</packaging>-->
+                            <!--<generatePom>true</generatePom>-->
+                        <!--</configuration>-->
+                        <!--<goals>-->
+                            <!--<goal>install-file</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+        </plugins>
+    </build>
+
+
+</project>
