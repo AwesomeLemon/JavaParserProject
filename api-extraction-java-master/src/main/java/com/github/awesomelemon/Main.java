@@ -47,9 +47,9 @@ public class Main {
 //        String databasePath = "D:\\YandexDisk\\DeepApiJava.sqlite";
         Stopwatch s = Stopwatch.createStarted();
 
-        for(int i = 0; i < 1; i++){
+        for(int i = 0; i < 10; i++){
 //            String repoPath = "/home/hddcable/Downloads/cropiwa-master/library"; // For "Cropiwa" repository
-            String repoPath = "/home/hddcable/Downloads/guava-master/guava"; // For "Guava"repository
+            String repoPath = "/media/jet/HDD/guava"; // For "Guava"repository
             ProcessRepoUsingSourceRoot(repoPath);
         }
 
@@ -208,12 +208,12 @@ public class Main {
             CombinedTypeSolver combinedTypeSolver2 = new CombinedTypeSolver();
             combinedTypeSolver2.add(new ReflectionTypeSolver());
             File javaFile = new File(String.valueOf(cu.getStorage().get().getPath()));
-            if ("/home/hddcable/Downloads/guava-master/guava/src/com/google/common/collect/Range.java".equals(javaFile.getAbsolutePath())) {
+            if ("/media/jet/HDD/guava/guava/src/com/google/common/collect/Range.java".equals(javaFile.getAbsolutePath())) {
                 System.out.println("STOP");
                 stopPoint = true;
                 continue;
             }
-            System.out.println(javaFile.getAbsolutePath());
+//            System.out.println(javaFile.getAbsolutePath());
             combinedTypeSolver2.add(new JavaParserTypeSolver(new File(repoPath)));
             combinedTypeSolver2.add(new JavaParserTypeSolver(findProperRootDir(javaFile)));
 
@@ -241,6 +241,7 @@ public class Main {
             }
             JavaParserFacade.clearInstances();
         }
+        System.out.println(repoMethods.size());
         return repoMethods;
     }
 

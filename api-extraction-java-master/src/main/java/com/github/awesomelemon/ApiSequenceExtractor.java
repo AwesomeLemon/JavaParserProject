@@ -21,10 +21,7 @@ import com.github.javaparser.symbolsolver.javaparsermodel.UnsolvedSymbolExceptio
 import com.google.common.collect.ImmutableList;
 
 import java.lang.reflect.Field;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Stack;
+import java.util.*;
 
 import static com.github.awesomelemon.Util.getShortTypeName;
 
@@ -78,7 +75,7 @@ public class ApiSequenceExtractor extends VoidVisitorAdapter<List<ApiCall>> {
             return null;
         }
         catch (RuntimeException e ) {
-            System.out.println(3);
+//            System.out.println(3);
             return null;
         }
     }
@@ -152,31 +149,43 @@ public class ApiSequenceExtractor extends VoidVisitorAdapter<List<ApiCall>> {
         }
     }
 
+    static HashSet<String> exceptionMethodNames = new HashSet<>(List.of("writeObject", "callable",
+            "toMicros", "hashCode", "divide", "log2", "doubleValue"));
+
     private void updateLastReturnTypeOfMethod(MethodCallExpr methodCallExpr) {
         MethodUsage methodUsage = null;
         try {
 //            System.out.println("updateLastReturnType: " + methodCallExpr.getName());
 //            ImmutableList<String> exceptionMethodNames = ImmutableList.of("isLoggable", "d", "load"); // For "Cropiwa" repository
-            ImmutableList<String> exceptionMethodNames = ImmutableList.of("writeObject", "callable", "toMicros", "hashCode", "divide", "log2", "doubleValue"); // For "Guava" repository
+            // For "Guava" repository
             if (exceptionMethodNames.contains(methodCallExpr.getName().asString())) {
-                System.out.println("EXCEPTION");
+//                System.out.println("EXCEPTION");
                 lastReturnType = null;
-                return;
+//                return;
             }
             methodUsage = JavaParserFacade.get(typeSolver).solveMethodAsUsage(methodCallExpr);
         }
         catch (UnsolvedSymbolException e) {
 //            System.out.println(4);
+//            System.out.println(methodCallExpr.getName());
             lastReturnType = null;
             e.printStackTrace();
         }
+//        catch (UnsupportedOperationException e) {
+//            System.out.println(methodCallExpr.getName());
+//            lastReturnType = null;
+//            e.printStackTrace();
+//        }
         catch (RuntimeException e) {//this is neccessary, 'cause JavaParser can throw these when it fails
 //            System.out.println(5);
+//            System.out.println(methodCallExpr.getName());
             lastReturnType = null;
             e.printStackTrace();
         }
+
         if (methodUsage != null) {
 //            System.out.println(6);
+//            System.out.println(methodCallExpr.getName());
             String shortType = getShortTypeName(methodUsage);
             updateLastReturnType(shortType);
         }
